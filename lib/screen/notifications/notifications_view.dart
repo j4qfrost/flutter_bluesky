@@ -15,10 +15,10 @@ class NotificationsView extends StatefulWidget {
   final BaseScreen baseScreen;
 
   const NotificationsView({
-    Key? key,
+    super.key,
     required this.manager,
     required this.baseScreen,
-  }) : super(key: key);
+  });
 
   @override
   State<NotificationsView> createState() => _NotificationsViewState();

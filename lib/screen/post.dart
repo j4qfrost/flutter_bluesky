@@ -26,8 +26,7 @@ class Post extends StatefulWidget {
   final PostType postType;
   final feed.Post? post;
   static Screen screen = Screen(Post, const Icon(Icons.edit));
-  const Post({Key? key, this.postType = PostType.normal, this.post})
-      : super(key: key);
+  const Post({super.key, this.postType = PostType.normal, this.post});
   @override
   PostScreen createState() => PostScreen();
 }
@@ -88,7 +87,7 @@ class PostScreen extends State<Post> {
     return ElevatedButton(
         onPressed: _submit,
         style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),
         ))),

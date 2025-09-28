@@ -12,10 +12,10 @@ class SearchView extends StatefulWidget {
   final BaseScreen baseScreen;
 
   const SearchView({
-    Key? key,
+    super.key,
     required this.manager,
     required this.baseScreen,
-  }) : super(key: key);
+  });
 
   @override
   State<SearchView> createState() => _SearchViewState();

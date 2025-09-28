@@ -10,10 +10,10 @@ class HomeView extends StatefulWidget {
   final BaseScreen baseScreen;
 
   const HomeView({
-    Key? key,
+    super.key,
     required this.manager,
     required this.baseScreen,
-  }) : super(key: key);
+  });
 
   @override
   State<HomeView> createState() => _HomeViewState();

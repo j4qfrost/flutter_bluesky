@@ -121,7 +121,7 @@ class AccountDeleteScreen extends State<AccountDelete> {
     items.addAll(initItems);
     SendEmailButton sendEmailButton = SendEmailButton(this);
     sendEmailButton.backgroundColor =
-        MaterialStateProperty.all(Theme.of(context).primaryColor);
+        WidgetStateProperty.all(Theme.of(context).primaryColor);
     sendEmailButton.color = Colors.white;
     sendEmailButton.height = 60;
     sendEmailButton.left = 20;
@@ -181,8 +181,8 @@ class AccountDeleteScreen extends State<AccountDelete> {
     return ElevatedButton(
         onPressed: _submit,
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(color),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            backgroundColor: WidgetStateProperty.all(color),
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(18.0),
             ))),

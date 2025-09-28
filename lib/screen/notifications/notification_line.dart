@@ -15,8 +15,7 @@ class NotificationsLine extends StatefulWidget {
   final notice.Notification notification;
   final Post? post;
   const NotificationsLine(
-      {Key? key, required this.notification, required this.post})
-      : super(key: key);
+      {super.key, required this.notification, required this.post});
   @override
   NotificationsLineScreen createState() => NotificationsLineScreen();
 }

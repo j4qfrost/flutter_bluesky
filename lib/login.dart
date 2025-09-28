@@ -8,9 +8,11 @@ import 'package:flutter_bluesky/util/base_util.dart';
 import 'package:flutter_bluesky/screen/search.dart';
 import 'package:flutter_bluesky/util/login_util.dart';
 import 'package:flutter_login/flutter_login.dart';
-// ignore: implementation_imports
-import 'package:flutter_login/src/regex.dart';
 import 'package:tuple/tuple.dart';
+
+final RegExp emailRegex = RegExp(
+  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
+);
 
 String get initialRoute {
   if (isAlive) {
@@ -27,7 +29,7 @@ String get initialRoute {
 class LoginScreen extends StatelessWidget {
   static const route = '/auth';
   static bool autoLogin = true;
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   String? response(Tuple2 res) {
     if (res.item1 == 200) {
@@ -38,8 +40,11 @@ class LoginScreen extends StatelessWidget {
   }
 
   Future<String?> signUp(SignupData data) async {
-    Tuple2 res =
-        await plugin.register(data.name!, getHandle(data), data.password!);
+    Tuple2 res = await plugin.register(
+      data.name!,
+      getHandle(data),
+      data.password!,
+    );
     if (autoLogin && res.item1 == 200) {
       return response(await plugin.login(data.name!, data.password!));
     }
@@ -87,27 +92,28 @@ class LoginScreen extends StatelessWidget {
   List<UserFormField>? additionalSignupFields() {
     return [
       UserFormField(
-          keyName: "handle",
-          displayName: tr('handle.hint'),
-          fieldValidator: handleValidator)
+        keyName: "handle",
+        displayName: tr('handle.hint'),
+        fieldValidator: handleValidator,
+      ),
     ];
   }
 
-  String? userValidator(value) {
-    if (value!.isEmpty || !Regex.email.hasMatch(value)) {
+  String? userValidator(String? value) {
+    if (value!.isEmpty || !emailRegex.hasMatch(value)) {
       return tr('invalid.email');
     }
     return null;
   }
 
-  String? passwordValidator(value) {
+  String? passwordValidator(String? value) {
     if (value!.isEmpty || value.length <= 2) {
       return tr('password.too.short');
     }
     return null;
   }
 
-  String? handleValidator(value) {
+  String? handleValidator(String? value) {
     if (value!.isEmpty || !Const.handle.hasMatch(value)) {
       return tr('signup.handle.unmatch');
     }
@@ -130,8 +136,9 @@ class LoginScreen extends StatelessWidget {
       recoverPasswordSuccess: tr('recover.password.success'),
       flushbarTitleError: tr('flushbar.title.error'),
       flushbarTitleSuccess: tr('flushbar.title.success'),
-      signUpSuccess:
-          autoLogin ? tr('login.after.signup') : tr('signup.success'),
+      signUpSuccess: autoLogin
+          ? tr('login.after.signup')
+          : tr('signup.success'),
       providersTitleFirst: tr('providers.title.first'),
       providersTitleSecond: tr('providers.title.second'),
       additionalSignUpSubmitButton: tr('additional.signup.submit'),
@@ -177,7 +184,7 @@ class LoginScreen extends StatelessWidget {
         text: tr('age.verification'),
         initialValue: true,
         validationErrorMessage: tr('required'),
-      )
+      ),
     ];
   }
 }

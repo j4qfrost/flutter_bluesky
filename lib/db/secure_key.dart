@@ -1,5 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'dart:convert';
 
 // https://docs.hivedb.dev/#/advanced/encrypted_box?id=encrypted-box

@@ -12,7 +12,7 @@ late int meIndex;
 // ignore: must_be_immutable
 class Me extends PluggableWidget {
   static Screen screen = Screen(Me, const Icon(Icons.person));
-  Me({Key? key}) : super(key: key);
+  Me({super.key});
   late Base base;
 
   @override

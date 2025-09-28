@@ -18,7 +18,7 @@ void initPluggables(Base baseWidget) {
 class Base extends StatefulWidget {
   static String route = "/";
   final int selectedIndex;
-  Base({Key? key, this.selectedIndex = 0}) : super(key: key);
+  Base({super.key, this.selectedIndex = 0});
 
   final BaseScreen screen = BaseScreen();
 

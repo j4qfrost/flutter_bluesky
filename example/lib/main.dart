@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bluesky/api/session.dart';
 import 'package:flutter_bluesky/data/assets.dart';
 import 'package:flutter_bluesky/screen/data/factory.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:tuple/tuple.dart';
 import 'package:flutter_bluesky/db/accessor.dart';
 import 'package:flutter_bluesky/flutter_bluesky.dart';
@@ -27,7 +28,6 @@ import 'package:flutter_bluesky/screen/thread.dart';
 import 'package:flutter_bluesky/screen/actors.dart';
 import 'package:flutter_bluesky/transition_route_observer.dart';
 import 'package:flutter_bluesky_example/sample_timeline.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 // ignore: depend_on_referenced_packages
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:easy_localization/easy_localization.dart';
@@ -40,7 +40,7 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({Key? key}) : super(key: key);
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +55,9 @@ class MainApp extends StatelessWidget {
         colorSchemeSeed: Colors.indigoAccent,
         brightness: Brightness.light,
         textTheme: const TextTheme(
-            bodyMedium: TextStyle(fontSize: 16),
-            titleSmall: TextStyle(fontSize: 16)),
+          bodyMedium: TextStyle(fontSize: 16),
+          titleSmall: TextStyle(fontSize: 16),
+        ),
       ),
       navigatorObservers: [TransitionRouteObserver()],
       initialRoute: initialRoute,
@@ -131,10 +132,13 @@ Future<void> initScreen() async {
 }
 
 void initMenu() {
-  menus.add(Menu(
+  menus.add(
+    Menu(
       prop: "Settings",
       icon: Settings.screen.icon.icon!,
-      transfer: const Settings()));
+      transfer: const Settings(),
+    ),
+  );
 }
 
 Future<void> initApp(String name, StatelessWidget appWidget) async {
@@ -142,9 +146,10 @@ Future<void> initApp(String name, StatelessWidget appWidget) async {
   await init();
   runApp(
     EasyLocalization(
-        supportedLocales: const [Locale('en', 'US'), Locale('ja', 'JP')],
-        path: 'assets/langs', // <-- change the path of the translation files
-        fallbackLocale: const Locale('ja', 'JP'),
-        child: appWidget),
+      supportedLocales: const [Locale('en', 'US'), Locale('ja', 'JP')],
+      path: 'assets/langs', // <-- change the path of the translation files
+      fallbackLocale: const Locale('ja', 'JP'),
+      child: appWidget,
+    ),
   );
 }

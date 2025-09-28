@@ -11,7 +11,7 @@ import 'package:flutter_bluesky/util/button_util.dart';
 // ignore: must_be_immutable
 class Home extends PluggableWidget {
   static Screen screen = Screen(Home, const Icon(Icons.home));
-  Home({Key? key}) : super(key: key);
+  Home({super.key});
   late Base base;
 
   @override

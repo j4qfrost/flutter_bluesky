@@ -32,7 +32,7 @@ class Like extends StatelessWidget {
 }
 
 class LikeWidget extends AcceptableStatefulWidget {
-  const LikeWidget({Key? key}) : super(key: key);
+  const LikeWidget({super.key});
 
   @override
   LikeScreen createState() => LikeScreen();

@@ -9,7 +9,7 @@ abstract class Picture {
   Future<void> setImage(ImageFile imageFile) async {
     file = imageFile;
     // ignore: unnecessary_null_comparison
-    provider = file!.bytes == null ? null : MemoryImage(await file!.bytes);
+    provider = MemoryImage(await file!.bytes);
   }
 
   Widget get widget;

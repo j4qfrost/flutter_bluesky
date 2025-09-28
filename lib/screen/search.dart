@@ -10,7 +10,7 @@ late int searchIndex;
 // ignore: must_be_immutable
 class Search extends PluggableWidget {
   static Screen screen = Screen(Search, const Icon(Icons.search));
-  Search({Key? key}) : super(key: key);
+  Search({super.key});
   late Base base;
 
   @override
@@ -40,21 +40,22 @@ class SearchScreen extends State<Search> with Frame {
   @override
   Widget body() {
     return FutureBuilder(
-        future: _manager.getData(excludeSelf),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (snapshot.hasError) {
-            return Text("Error: ${snapshot.error}");
-          } else {
-            return SearchView(
-              manager: _manager,
-              // baseScreen: widget.base.screen,
-              baseScreen: base!.screen,
-            );
-          }
-        });
+      future: _manager.getData(excludeSelf),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.hasError) {
+          return Text("Error: ${snapshot.error}");
+        } else {
+          return SearchView(
+            manager: _manager,
+            // baseScreen: widget.base.screen,
+            baseScreen: base!.screen,
+          );
+        }
+      },
+    );
   }
 
   bool get excludeSelf {

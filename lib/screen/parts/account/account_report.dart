@@ -22,15 +22,23 @@ class AccountReportScreen extends State<AccountReport> {
   String? reason;
 
   Widget header = padding20(
-      Text(tr("report.account"), style: const TextStyle(fontSize: 24)));
-  Widget content = Text(tr("report.account.message"),
-      style: const TextStyle(color: Colors.black87));
+    Text(tr("report.account"), style: const TextStyle(fontSize: 24)),
+  );
+  Widget content = Text(
+    tr("report.account.message"),
+    style: const TextStyle(color: Colors.black87),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Form(
-        key: formKey,
-        child: SingleChildScrollView(child: Column(children: widgets)));
+      key: formKey,
+      child: RadioGroup(
+        onChanged: (Object? value) => _onSelected(value as ReasonType),
+        groupValue: selected,
+        child: SingleChildScrollView(child: Column(children: widgets)),
+      ),
+    );
   }
 
   List<Widget> get widgets {
@@ -43,8 +51,12 @@ class AccountReportScreen extends State<AccountReport> {
       reasonForm(),
     ];
     if (selected != null) {
-      widget.button =
-          accountReportButton(this, widget.actor, selected!, reason);
+      widget.button = accountReportButton(
+        this,
+        widget.actor,
+        selected!,
+        reason,
+      );
       list.add(widget.button.widget);
     }
     return list;
@@ -52,23 +64,24 @@ class AccountReportScreen extends State<AccountReport> {
 
   Widget reasonForm({FormFieldValidator<String>? validator}) {
     return padding(
-        TextFormField(
-          decoration: decoration("report.reason"),
-          validator: validator,
-          minLines: 3,
-          maxLines: 8,
-          maxLength: 300,
-          initialValue: reason,
-          onSaved: (value) {
-            setState(() {
-              reason = value!;
-            });
-          },
-        ),
-        left: 20,
-        top: 0,
-        right: 20,
-        bottom: 0);
+      TextFormField(
+        decoration: decoration("report.reason"),
+        validator: validator,
+        minLines: 3,
+        maxLines: 8,
+        maxLength: 300,
+        initialValue: reason,
+        onSaved: (value) {
+          setState(() {
+            reason = value!;
+          });
+        },
+      ),
+      left: 20,
+      top: 0,
+      right: 20,
+      bottom: 0,
+    );
   }
 
   RadioListTile tile(ReasonType reasonType) {
@@ -80,27 +93,29 @@ class AccountReportScreen extends State<AccountReport> {
           Text(
             tr("report.account.${reasonType.name}.description"),
             style: const TextStyle(color: Colors.grey, fontSize: 14),
-          )
+          ),
         ],
       ),
       value: reasonType,
-      groupValue: selected,
-      onChanged: (value) => _onSelected(value),
     );
   }
 
-  _onSelected(ReasonType reasonType) {
+  void _onSelected(ReasonType reasonType) {
     setState(() {
       selected = reasonType;
     });
   }
 }
 
-ReportButton accountReportButton(State state, ProfileViewDetailed actor,
-    ReasonType reasonType, String? reason) {
+ReportButton accountReportButton(
+  State state,
+  ProfileViewDetailed actor,
+  ReasonType reasonType,
+  String? reason,
+) {
   Map<String, dynamic> subject = {
     "\$type": "com.atproto.admin.defs#repoRef",
-    "did": actor.did
+    "did": actor.did,
   };
   return reportButton(state, subject, reasonType, reason);
 }

@@ -31,7 +31,7 @@ class Reply extends StatelessWidget {
 }
 
 class ReplyWidget extends AcceptableStatefulWidget {
-  const ReplyWidget({Key? key}) : super(key: key);
+  const ReplyWidget({super.key});
 
   @override
   ReplyScreen createState() => ReplyScreen();

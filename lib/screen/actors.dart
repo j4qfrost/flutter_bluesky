@@ -11,7 +11,7 @@ class Actors extends StatefulWidget {
   static Screen screen = Screen(Actors, const Icon(Icons.group));
   final String? prop;
   final String? actor;
-  const Actors({Key? key, this.actor, this.prop}) : super(key: key);
+  const Actors({super.key, this.actor, this.prop});
 
   @override
   ActorsScreen createState() => ActorsScreen();

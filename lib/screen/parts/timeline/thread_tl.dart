@@ -108,7 +108,7 @@ class ThreadMain extends StatelessWidget {
 }
 
 class ThreadFooter extends AcceptableStatefulWidget {
-  const ThreadFooter({Key? key}) : super(key: key);
+  const ThreadFooter({super.key});
 
   @override
   ThreadFooterScreen createState() => ThreadFooterScreen();

@@ -10,7 +10,7 @@ import 'package:flutter_bluesky/flutter_bluesky.dart';
 
 class Provider extends StatefulWidget {
   static Screen screen = Screen(Provider, const Icon(Icons.list));
-  const Provider({Key? key}) : super(key: key);
+  const Provider({super.key});
 
   @override
   ProviderScreen createState() => ProviderScreen();

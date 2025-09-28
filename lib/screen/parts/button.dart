@@ -9,7 +9,7 @@ import 'package:flutter_bluesky/util/common_util.dart';
 import 'package:tuple/tuple.dart';
 
 abstract class Button {
-  MaterialStateProperty<Color?>? backgroundColor;
+  WidgetStateProperty<Color?>? backgroundColor;
   Color? color;
   double? fontSize;
   FontWeight? fontWeight = FontWeight.normal;
@@ -22,7 +22,7 @@ abstract class Button {
         onPressed: onPressed,
         style: ButtonStyle(
             backgroundColor: backgroundColor,
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(18.0),
             ))),
@@ -78,7 +78,7 @@ abstract class ModalButton extends SizedButton {
   @override
   Widget get widget {
     backgroundColor =
-        MaterialStateProperty.all(Theme.of(state.context).primaryColor);
+        WidgetStateProperty.all(Theme.of(state.context).primaryColor);
     color = Colors.white;
     fontWeight = FontWeight.bold;
     return super.widget;

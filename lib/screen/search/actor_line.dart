@@ -13,7 +13,7 @@ ActorContent? customActorContent;
 
 class ActorLine extends StatefulWidget {
   final ProfileView actor;
-  const ActorLine({Key? key, required this.actor}) : super(key: key);
+  const ActorLine({super.key, required this.actor});
   @override
   ActorLineScreen createState() => ActorLineScreen();
 }

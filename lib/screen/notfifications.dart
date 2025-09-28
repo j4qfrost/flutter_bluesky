@@ -11,7 +11,7 @@ class Notifications extends PluggableWidget {
   static Screen screen = Screen(Notifications, const Icon(Icons.notifications));
   final NotificationsDataManager manager = NotificationsDataManager();
 
-  Notifications({Key? key}) : super(key: key);
+  Notifications({super.key});
   late Base base;
 
   @override

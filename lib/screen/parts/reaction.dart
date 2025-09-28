@@ -44,7 +44,7 @@ class Reaction {
 class ReactionState extends ValueNotifier<Reaction> {
   final BuildContext context;
   final feed.Post post;
-  ReactionState(Reaction reaction, this.context, this.post) : super(reaction);
+  ReactionState(super.reaction, this.context, this.post);
 
   void reply() async {
     await _action(ReplyReaction(value, context, post));

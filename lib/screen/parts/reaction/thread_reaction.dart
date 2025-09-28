@@ -27,8 +27,7 @@ class ThreadReaction {
 class ThreadReactionState extends ValueNotifier<ThreadReaction> {
   final BuildContext context;
   final feed.Post post;
-  ThreadReactionState(ThreadReaction value, this.context, this.post)
-      : super(value);
+  ThreadReactionState(super.value, this.context, this.post);
 
   void reply() async {
     await _action(ReplyReaction(value.reply, context, post));

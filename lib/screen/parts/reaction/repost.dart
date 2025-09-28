@@ -36,7 +36,7 @@ class Repost extends StatelessWidget {
 }
 
 class RepostWidget extends AcceptableStatefulWidget {
-  const RepostWidget({Key? key}) : super(key: key);
+  const RepostWidget({super.key});
 
   @override
   RepostScreen createState() => RepostScreen();

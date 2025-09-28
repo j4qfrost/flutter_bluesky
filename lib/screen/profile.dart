@@ -8,7 +8,7 @@ import 'package:flutter_bluesky/screen/profile/profile_view.dart';
 
 class Profile extends StatefulWidget {
   static Screen screen = Screen(Profile, const Icon(Icons.person));
-  const Profile({Key? key, this.actor}) : super(key: key);
+  const Profile({super.key, this.actor});
   final String? actor;
 
   @override

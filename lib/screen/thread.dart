@@ -8,7 +8,7 @@ import 'package:tuple/tuple.dart';
 
 class Thread extends StatefulWidget {
   static Screen screen = Screen(Thread, const Icon(Icons.filter));
-  const Thread({Key? key, this.handle, this.uri}) : super(key: key);
+  const Thread({super.key, this.handle, this.uri});
   final String? handle;
   final String? uri;
   @override

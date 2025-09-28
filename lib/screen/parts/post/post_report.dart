@@ -21,16 +21,24 @@ class PostReportScreen extends State<PostReport> {
   ReasonType? selected;
   String? reason;
 
-  Widget header =
-      padding20(Text(tr("report.post"), style: const TextStyle(fontSize: 24)));
-  Widget content = Text(tr("report.post.message"),
-      style: const TextStyle(color: Colors.black87));
+  Widget header = padding20(
+    Text(tr("report.post"), style: const TextStyle(fontSize: 24)),
+  );
+  Widget content = Text(
+    tr("report.post.message"),
+    style: const TextStyle(color: Colors.black87),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Form(
-        key: formKey,
-        child: SingleChildScrollView(child: Column(children: widgets)));
+      key: formKey,
+      child: RadioGroup(
+        onChanged: (Object? value) => _onSelected(value as ReasonType),
+        groupValue: selected,
+        child: SingleChildScrollView(child: Column(children: widgets)),
+      ),
+    );
   }
 
   List<Widget> get widgets {
@@ -53,23 +61,24 @@ class PostReportScreen extends State<PostReport> {
 
   Widget reasonForm({FormFieldValidator<String>? validator}) {
     return padding(
-        TextFormField(
-          decoration: decoration("report.reason"),
-          validator: validator,
-          minLines: 3,
-          maxLines: 8,
-          maxLength: 300,
-          initialValue: reason,
-          onSaved: (value) {
-            setState(() {
-              reason = value!;
-            });
-          },
-        ),
-        left: 20,
-        top: 0,
-        right: 20,
-        bottom: 0);
+      TextFormField(
+        decoration: decoration("report.reason"),
+        validator: validator,
+        minLines: 3,
+        maxLines: 8,
+        maxLength: 300,
+        initialValue: reason,
+        onSaved: (value) {
+          setState(() {
+            reason = value!;
+          });
+        },
+      ),
+      left: 20,
+      top: 0,
+      right: 20,
+      bottom: 0,
+    );
   }
 
   RadioListTile tile(ReasonType reasonType) {
@@ -81,16 +90,14 @@ class PostReportScreen extends State<PostReport> {
           Text(
             tr("report.post.${reasonType.name}.description"),
             style: const TextStyle(color: Colors.grey, fontSize: 14),
-          )
+          ),
         ],
       ),
       value: reasonType,
-      groupValue: selected,
-      onChanged: (value) => _onSelected(value),
     );
   }
 
-  _onSelected(ReasonType reasonType) {
+  void _onSelected(ReasonType reasonType) {
     setState(() {
       selected = reasonType;
     });
@@ -98,11 +105,15 @@ class PostReportScreen extends State<PostReport> {
 }
 
 ReportButton postReportButton(
-    State state, Post post, ReasonType reasonType, String? reason) {
+  State state,
+  Post post,
+  ReasonType reasonType,
+  String? reason,
+) {
   Map<String, dynamic> subject = {
     "\$type": "com.atproto.repo.strongRef",
     "uri": post.uri,
-    "cid": post.cid
+    "cid": post.cid,
   };
   return reportButton(state, subject, reasonType, reason);
 }

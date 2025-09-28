@@ -15,7 +15,7 @@ import 'package:flutter_bluesky/util/image_util.dart';
 
 class EditProfile extends StatefulWidget {
   static Screen screen = Screen(EditProfile, const Icon(Icons.edit));
-  const EditProfile({Key? key}) : super(key: key);
+  const EditProfile({super.key});
   @override
   EditProfileScreen createState() => EditProfileScreen();
 }
@@ -89,7 +89,7 @@ class EditProfileScreen extends State<EditProfile> {
     return ElevatedButton(
         onPressed: submitData,
         style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),
         ))),

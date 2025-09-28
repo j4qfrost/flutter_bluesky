@@ -32,7 +32,7 @@ class More extends StatelessWidget {
 }
 
 class MoreWidget extends AcceptableStatefulWidget {
-  const MoreWidget({Key? key}) : super(key: key);
+  const MoreWidget({super.key});
 
   @override
   MoreScreen createState() => MoreScreen();

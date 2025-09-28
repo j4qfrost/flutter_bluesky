@@ -8,8 +8,7 @@ import 'package:flutter_bluesky/util/facet_util.dart';
 class HyperLink extends LinkWidget {
   final String text;
 
-  HyperLink(BuildContext context, this.text, {double? fontSize})
-      : super(context, fontSize: fontSize);
+  HyperLink(super.context, this.text, {super.fontSize});
 
   @override
   Widget get withLink {

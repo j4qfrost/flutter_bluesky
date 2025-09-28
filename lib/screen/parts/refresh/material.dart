@@ -10,8 +10,7 @@ typedef RefreshCallback = Future<void> Function();
 class MaterialSliverRefreshControl extends StatelessWidget {
   final RefreshCallback? onRefresh;
 
-  const MaterialSliverRefreshControl({Key? key, this.onRefresh})
-      : super(key: key);
+  const MaterialSliverRefreshControl({super.key, this.onRefresh});
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:flutter_bluesky/db/secure_key.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 
 const dataBox = 'dataBox'; // Never change the value.
 final Box _dataBox = Hive.box(dataBox);

@@ -37,12 +37,11 @@ class ProfileViewBasic {
 class ProfileView extends ProfileViewBasic {
   String? description;
   DateTime? indexedAt;
-  ProfileView(Map map)
+  ProfileView(super.map)
       : description = map["description"],
         indexedAt = map["indexedAt"] == null
             ? null
-            : DateTime.parse((map["indexedAt"])),
-        super(map);
+            : DateTime.parse((map["indexedAt"]));
 }
 
 // profileViewDetailed
@@ -51,12 +50,11 @@ class ProfileViewDetailed extends ProfileView {
   int followersCount;
   int followsCount;
   int postsCount;
-  ProfileViewDetailed(Map map)
+  ProfileViewDetailed(super.map)
       : banner = map["banner"],
         followersCount = (map["followersCount"]),
         followsCount = (map["followsCount"]),
-        postsCount = (map["postsCount"]),
-        super(map);
+        postsCount = (map["postsCount"]);
 }
 
 // app.bsky.actor.viewerState

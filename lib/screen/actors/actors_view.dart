@@ -13,11 +13,11 @@ class ActorsView extends StatefulWidget {
   final BaseScreen baseScreen;
 
   const ActorsView({
-    Key? key,
+    super.key,
     required this.prop,
     required this.manager,
     required this.baseScreen,
-  }) : super(key: key);
+  });
 
   @override
   State<ActorsView> createState() => _ActorsViewState();
